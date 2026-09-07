@@ -150,7 +150,10 @@ Adapters speak HTTP. There is no vendor SDK in the hot path.
 | `anthropic` | Anthropic messages |
 | `google` | Gemini `generateContent` |
 | `ollama` | Ollama `/api/chat` |
+| `litellm` | Optional fabric: OpenAI-compatible LiteLLM proxy |
 | `mock` | Deterministic local stub |
+
+Set `LITELLM_BASE_URL` (fabric `auto` or `litellm`) to send OpenAI, Anthropic, Gemini, and Groq calls through LiteLLM. Mock stays in-process. Ollama stays direct unless `AETHERGRAPH_LITELLM_INCLUDE_LOCAL=true`. Model slugs are mapped (`anthropic/…`, `gemini/…`, `groq/…`) or overridden with `litellm_model` on the catalog entry.
 
 Embeddings are catalogued so the router can send `embedding` nodes to `text-embedding-3-small` or `nomic-embed-text` instead of a chat model.
 
@@ -199,7 +202,7 @@ Keep these interfaces stable and you can grow the system without a rewrite:
 | `classifier.classify` | cheap-model or fine-tuned classifier |
 | `planner.plan_graph` | frontier planner that emits GraphSpec |
 | `router.route` | linear program, bandit, or learned policy |
-| `ProviderRegistry` | extra vendors, batch APIs, on-prem vLLM |
+| `ProviderRegistry` | LiteLLM fabric, extra vendors, batch APIs, on-prem vLLM |
 | `CostLedger` | durable store, FinOps export |
 | `GatewayHandler` | auth, tenancy, policy packs per team |
 
