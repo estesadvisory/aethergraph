@@ -30,6 +30,10 @@ class Settings(BaseSettings):
     policy: str = "balanced"
     log_level: str = "INFO"
     ollama_host: str = "http://127.0.0.1:11434"
+    fabric: str = "auto"
+    litellm_base_url: str | None = None
+    litellm_api_key: str | None = None
+    litellm_include_local: bool = False
 
     @property
     def models_path(self) -> Path:
