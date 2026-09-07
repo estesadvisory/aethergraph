@@ -1,0 +1,443 @@
+# Model catalog: capability scores are 0-10 per task type.
+# Prices are USD per 1M tokens and should be updated as vendor rates change.
+# availability is evaluated at runtime from credentials + optional health probes.
+
+models:
+  - id: mock-nano
+    display_name: Mock Nano
+    provider: mock
+    model: mock-nano
+    locality: local
+    context_window: 16000
+    input_cost_per_mtok: 0.0
+    output_cost_per_mtok: 0.0
+    latency_ms_p50: 20
+    modalities: [text]
+    capabilities:
+      classification: 7
+      extraction: 6
+      summarization: 6
+      conversation: 6
+      writing: 5
+      translation: 5
+      planning: 4
+      code: 4
+      reasoning: 3
+      vision: 0
+      embedding: 0
+
+  - id: mock-reasoner
+    display_name: Mock Reasoner
+    provider: mock
+    model: mock-reasoner
+    locality: cloud
+    context_window: 128000
+    input_cost_per_mtok: 3.0
+    output_cost_per_mtok: 15.0
+    latency_ms_p50: 80
+    modalities: [text]
+    capabilities:
+      reasoning: 9
+      planning: 9
+      code: 8
+      writing: 8
+      extraction: 7
+      conversation: 7
+      classification: 6
+      summarization: 6
+      translation: 6
+      vision: 0
+      embedding: 0
+
+  - id: openai-gpt-4.1-nano
+    display_name: GPT-4.1 Nano
+    provider: openai
+    model: gpt-4.1-nano
+    locality: cloud
+    context_window: 1000000
+    input_cost_per_mtok: 0.10
+    output_cost_per_mtok: 0.40
+    latency_ms_p50: 400
+    modalities: [text]
+    capabilities:
+      classification: 8
+      extraction: 7
+      summarization: 7
+      conversation: 7
+      translation: 7
+      writing: 6
+      planning: 5
+      code: 5
+      reasoning: 4
+      vision: 0
+      embedding: 0
+
+  - id: openai-gpt-4.1-mini
+    display_name: GPT-4.1 Mini
+    provider: openai
+    model: gpt-4.1-mini
+    locality: cloud
+    context_window: 1000000
+    input_cost_per_mtok: 0.40
+    output_cost_per_mtok: 1.60
+    latency_ms_p50: 700
+    modalities: [text]
+    capabilities:
+      classification: 8
+      extraction: 8
+      summarization: 8
+      conversation: 8
+      writing: 8
+      translation: 8
+      planning: 7
+      code: 7
+      reasoning: 6
+      vision: 0
+      embedding: 0
+
+  - id: openai-gpt-4.1
+    display_name: GPT-4.1
+    provider: openai
+    model: gpt-4.1
+    locality: cloud
+    context_window: 1000000
+    input_cost_per_mtok: 2.00
+    output_cost_per_mtok: 8.00
+    latency_ms_p50: 1200
+    modalities: [text]
+    capabilities:
+      code: 9
+      writing: 9
+      planning: 8
+      reasoning: 8
+      extraction: 8
+      conversation: 9
+      summarization: 8
+      classification: 8
+      translation: 8
+      vision: 0
+      embedding: 0
+
+  - id: openai-o3
+    display_name: OpenAI o3
+    provider: openai
+    model: o3
+    locality: cloud
+    context_window: 200000
+    input_cost_per_mtok: 2.00
+    output_cost_per_mtok: 8.00
+    latency_ms_p50: 8000
+    modalities: [text]
+    capabilities:
+      reasoning: 10
+      planning: 9
+      code: 9
+      extraction: 7
+      writing: 7
+      conversation: 6
+      classification: 6
+      summarization: 6
+      translation: 6
+      vision: 0
+      embedding: 0
+
+  - id: anthropic-haiku-4
+    display_name: Claude Haiku 4
+    provider: anthropic
+    model: claude-haiku-4-5
+    locality: cloud
+    context_window: 200000
+    input_cost_per_mtok: 0.80
+    output_cost_per_mtok: 4.00
+    latency_ms_p50: 500
+    modalities: [text]
+    capabilities:
+      classification: 8
+      extraction: 8
+      summarization: 8
+      conversation: 8
+      writing: 7
+      translation: 7
+      planning: 6
+      code: 6
+      reasoning: 5
+      vision: 0
+      embedding: 0
+
+  - id: anthropic-sonnet-4
+    display_name: Claude Sonnet 4
+    provider: anthropic
+    model: claude-sonnet-4-5
+    locality: cloud
+    context_window: 200000
+    input_cost_per_mtok: 3.00
+    output_cost_per_mtok: 15.00
+    latency_ms_p50: 1400
+    modalities: [text]
+    capabilities:
+      code: 9
+      writing: 9
+      reasoning: 9
+      planning: 9
+      extraction: 8
+      conversation: 9
+      summarization: 8
+      classification: 8
+      translation: 8
+      vision: 0
+      embedding: 0
+
+  - id: anthropic-opus-4
+    display_name: Claude Opus 4.1
+    provider: anthropic
+    model: claude-opus-4-1
+    locality: cloud
+    context_window: 200000
+    input_cost_per_mtok: 15.00
+    output_cost_per_mtok: 75.00
+    latency_ms_p50: 4000
+    modalities: [text]
+    capabilities:
+      reasoning: 10
+      planning: 10
+      writing: 10
+      code: 10
+      extraction: 9
+      conversation: 9
+      summarization: 8
+      classification: 8
+      translation: 8
+      vision: 0
+      embedding: 0
+
+  - id: google-gemini-2.5-flash-lite
+    display_name: Gemini 2.5 Flash Lite
+    provider: google
+    model: gemini-2.5-flash-lite
+    locality: cloud
+    context_window: 1000000
+    input_cost_per_mtok: 0.10
+    output_cost_per_mtok: 0.40
+    latency_ms_p50: 350
+    modalities: [text, image]
+    capabilities:
+      classification: 8
+      extraction: 7
+      summarization: 7
+      conversation: 7
+      translation: 7
+      writing: 6
+      planning: 5
+      code: 5
+      reasoning: 4
+      vision: 6
+      embedding: 0
+
+  - id: google-gemini-2.5-flash
+    display_name: Gemini 2.5 Flash
+    provider: google
+    model: gemini-2.5-flash
+    locality: cloud
+    context_window: 1000000
+    input_cost_per_mtok: 0.30
+    output_cost_per_mtok: 2.50
+    latency_ms_p50: 600
+    modalities: [text, image]
+    capabilities:
+      classification: 8
+      extraction: 8
+      summarization: 8
+      conversation: 8
+      writing: 8
+      translation: 8
+      planning: 7
+      code: 7
+      reasoning: 6
+      vision: 8
+      embedding: 0
+
+  - id: google-gemini-2.5-pro
+    display_name: Gemini 2.5 Pro
+    provider: google
+    model: gemini-2.5-pro
+    locality: cloud
+    context_window: 1000000
+    input_cost_per_mtok: 1.25
+    output_cost_per_mtok: 10.00
+    latency_ms_p50: 1800
+    modalities: [text, image]
+    capabilities:
+      reasoning: 9
+      planning: 9
+      code: 8
+      writing: 8
+      extraction: 8
+      conversation: 8
+      summarization: 8
+      classification: 8
+      translation: 8
+      vision: 9
+      embedding: 0
+
+  - id: groq-llama-3.3-70b
+    display_name: Groq Llama 3.3 70B
+    provider: openai_compat
+    model: llama-3.3-70b-versatile
+    base_url: https://api.groq.com/openai/v1
+    api_key_env: GROQ_API_KEY
+    locality: cloud
+    context_window: 128000
+    input_cost_per_mtok: 0.59
+    output_cost_per_mtok: 0.79
+    latency_ms_p50: 250
+    modalities: [text]
+    capabilities:
+      conversation: 8
+      writing: 7
+      summarization: 7
+      classification: 7
+      extraction: 6
+      translation: 7
+      planning: 6
+      code: 6
+      reasoning: 6
+      vision: 0
+      embedding: 0
+
+  - id: ollama-llama3.1-8b
+    display_name: Ollama Llama 3.1 8B
+    provider: ollama
+    model: llama3.1:8b
+    locality: local
+    context_window: 128000
+    input_cost_per_mtok: 0.0
+    output_cost_per_mtok: 0.0
+    latency_ms_p50: 900
+    modalities: [text]
+    capabilities:
+      conversation: 7
+      classification: 6
+      summarization: 6
+      writing: 6
+      translation: 6
+      extraction: 5
+      planning: 5
+      code: 5
+      reasoning: 4
+      vision: 0
+      embedding: 0
+
+  - id: ollama-qwen2.5-coder-14b
+    display_name: Ollama Qwen2.5 Coder 14B
+    provider: ollama
+    model: qwen2.5-coder:14b
+    locality: local
+    context_window: 32000
+    input_cost_per_mtok: 0.0
+    output_cost_per_mtok: 0.0
+    latency_ms_p50: 1600
+    modalities: [text]
+    capabilities:
+      code: 8
+      extraction: 6
+      reasoning: 6
+      planning: 5
+      conversation: 5
+      writing: 5
+      classification: 5
+      summarization: 5
+      translation: 5
+      vision: 0
+      embedding: 0
+
+  - id: ollama-llama3.3-70b
+    display_name: Ollama Llama 3.3 70B
+    provider: ollama
+    model: llama3.3:70b
+    locality: local
+    context_window: 128000
+    input_cost_per_mtok: 0.0
+    output_cost_per_mtok: 0.0
+    latency_ms_p50: 4000
+    modalities: [text]
+    capabilities:
+      reasoning: 7
+      writing: 7
+      conversation: 7
+      planning: 7
+      code: 6
+      extraction: 6
+      summarization: 7
+      classification: 6
+      translation: 7
+      vision: 0
+      embedding: 0
+
+  - id: ollama-llava
+    display_name: Ollama LLaVA
+    provider: ollama
+    model: llava
+    locality: local
+    context_window: 4096
+    input_cost_per_mtok: 0.0
+    output_cost_per_mtok: 0.0
+    latency_ms_p50: 1800
+    modalities: [text, image]
+    capabilities:
+      vision: 6
+      conversation: 5
+      summarization: 4
+      classification: 4
+      extraction: 3
+      writing: 3
+      planning: 2
+      code: 2
+      reasoning: 3
+      translation: 3
+      embedding: 0
+
+  - id: openai-text-embedding-3-small
+    display_name: OpenAI Embedding 3 Small
+    provider: openai
+    model: text-embedding-3-small
+    locality: cloud
+    context_window: 8192
+    input_cost_per_mtok: 0.02
+    output_cost_per_mtok: 0.0
+    latency_ms_p50: 200
+    modalities: [text]
+    capabilities:
+      embedding: 9
+      classification: 0
+      extraction: 0
+      summarization: 0
+      conversation: 0
+      writing: 0
+      translation: 0
+      planning: 0
+      code: 0
+      reasoning: 0
+      vision: 0
+
+  - id: ollama-nomic-embed
+    display_name: Ollama Nomic Embed
+    provider: ollama
+    model: nomic-embed-text
+    locality: local
+    context_window: 8192
+    input_cost_per_mtok: 0.0
+    output_cost_per_mtok: 0.0
+    latency_ms_p50: 80
+    modalities: [text]
+    capabilities:
+      embedding: 8
+      classification: 0
+      extraction: 0
+      summarization: 0
+      conversation: 0
+      writing: 0
+      translation: 0
+      planning: 0
+      code: 0
+      reasoning: 0
+      vision: 0

@@ -1,0 +1,24 @@
+{
+  "id": "research-brief",
+  "input": "Compare local Llama 3.3 70B versus Claude Sonnet for code review of a 2k-line FastAPI service. Recommend a routing policy.",
+  "budget_usd": 0.05,
+  "nodes": [
+    {
+      "id": "extract",
+      "task_type": "extraction",
+      "prompt": "Extract comparison criteria as JSON with keys facts, constraints, deliverable from: {{input}}"
+    },
+    {
+      "id": "analyze",
+      "task_type": "reasoning",
+      "depends_on": ["extract"],
+      "prompt": "Analyze this brief and recommend when to use local vs cloud models.\n\n{{extract.output}}"
+    },
+    {
+      "id": "write",
+      "task_type": "writing",
+      "depends_on": ["analyze"],
+      "prompt": "Write a one-page routing policy from this analysis:\n\n{{analyze.output}}"
+    }
+  ]
+}
