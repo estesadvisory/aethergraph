@@ -1,0 +1,41 @@
+# Logical A2A agents. In single-node mode they share one process.
+# In distributed mode each worker URL is an independent A2A server.
+
+gateway:
+  name: AetherGraph Gateway
+  description: Plans AI work as a graph and routes each node to the cheapest capable model.
+  version: 0.1.0
+  host: 0.0.0.0
+  port: 8080
+  public_url: http://127.0.0.1:8080
+
+workers:
+  - id: extract-agent
+    name: Aether Extract Agent
+    description: Structured extraction, classification, and summarization.
+    skills: [extraction, classification, summarization, embedding]
+    url: http://127.0.0.1:8081
+
+  - id: reason-agent
+    name: Aether Reason Agent
+    description: Hard reasoning, planning, and analysis.
+    skills: [reasoning, planning]
+    url: http://127.0.0.1:8082
+
+  - id: code-agent
+    name: Aether Code Agent
+    description: Code generation, review, and refactoring.
+    skills: [code]
+    url: http://127.0.0.1:8083
+
+  - id: write-agent
+    name: Aether Write Agent
+    description: Long-form writing, conversation, and translation.
+    skills: [writing, conversation, translation]
+    url: http://127.0.0.1:8084
+
+  - id: vision-agent
+    name: Aether Vision Agent
+    description: Image understanding and multimodal description.
+    skills: [vision]
+    url: http://127.0.0.1:8085
