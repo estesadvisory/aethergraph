@@ -18,7 +18,11 @@ class Runtime:
         self.models = load_models(self.settings.models_path)
         self.policy = load_policy(self.settings.policies_path)
         self.providers = ProviderRegistry(
-            ollama_host=os.environ.get("OLLAMA_HOST", self.settings.ollama_host)
+            ollama_host=os.environ.get("OLLAMA_HOST", self.settings.ollama_host),
+            fabric=self.settings.fabric,
+            litellm_base_url=os.environ.get("LITELLM_BASE_URL", self.settings.litellm_base_url),
+            litellm_api_key=os.environ.get("LITELLM_API_KEY", self.settings.litellm_api_key),
+            litellm_include_local=self.settings.litellm_include_local,
         )
         self.ledger = CostLedger()
         self.engine = GraphEngine(self.models, self.policy, self.providers, self.ledger)
@@ -41,6 +45,7 @@ def attach_ops_routes(app, runtime: Runtime) -> None:
                     "provider": item.provider,
                     "locality": item.locality.value,
                     "available": runtime.providers.available(item),
+                    "via": "litellm" if runtime.providers.uses_litellm(item) else item.provider,
                     "input_cost_per_mtok": item.input_cost_per_mtok,
                     "capabilities": {key.value: value for key, value in item.capabilities.items()},
                 }

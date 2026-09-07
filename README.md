@@ -77,9 +77,12 @@ Copy `.env.example` and set the keys you have. Missing keys simply mark that pro
 | Google | `GOOGLE_API_KEY` | Gemini 2.5 Flash / Pro |
 | Groq | `GROQ_API_KEY` | OpenAI-compatible, low latency |
 | Ollama | `OLLAMA_HOST` | Discovers local tags via `/api/tags` |
+| LiteLLM | `LITELLM_BASE_URL` | Optional fabric: vendor keys live on the proxy |
 | Mock | none | Always on for tests and dry runs |
 
-Edit `configs/models.yaml` to change prices, capability scores, or add a vLLM endpoint (`provider: openai_compat` + `base_url`). Edit `configs/policies.yaml` to raise/lower capability floors or the local-preference bonus.
+If `LITELLM_BASE_URL` is set (or `AETHERGRAPH_FABRIC=litellm`), cloud completions go through a [LiteLLM](https://github.com/BerriAI/litellm) proxy. AetherGraph still owns task typing, graph binding, capability floors, and cost policy. LiteLLM owns vendor SDKs, retries, and key vaults. Direct adapters stay as the fallback when no proxy is configured.
+
+Edit `configs/models.yaml` to change prices, capability scores, or add a vLLM endpoint (`provider: openai_compat` + `base_url`). Use `litellm_model` when the LiteLLM slug differs from the native model id. Edit `configs/policies.yaml` to raise/lower capability floors or the local-preference bonus.
 
 ## Library use
 
@@ -99,4 +102,4 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for the A2A mapping, routing math, catalo
 
 ## Status
 
-This is a working control-plane prototype: real protocol surface, real router, real adapters, in-memory task store. Production hardening left as a straight-line follow-up: auth on Agent Cards, durable task/ledger stores, SSE streaming, and worker processes split by skill.
+Working control plane: A2A surface, graph router, direct adapters, and an optional LiteLLM fabric. Still in-memory for tasks and the cost ledger. Next production steps are auth on Agent Cards, durable stores, SSE streaming, and split worker processes.

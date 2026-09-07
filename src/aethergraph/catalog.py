@@ -30,6 +30,7 @@ def load_models(path: Path) -> list[ModelProfile]:
                 capabilities=_task_map(item.get("capabilities", {})),
                 base_url=item.get("base_url"),
                 api_key_env=item.get("api_key_env"),
+                litellm_model=item.get("litellm_model"),
             )
         )
     return models

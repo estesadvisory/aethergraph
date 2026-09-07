@@ -62,6 +62,7 @@ class ModelProfile(BaseModel):
     capabilities: dict[TaskType, float]
     base_url: str | None = None
     api_key_env: str | None = None
+    litellm_model: str | None = None
 
 
 class RoutingPolicy(BaseModel):
